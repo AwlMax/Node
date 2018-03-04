@@ -63,13 +63,15 @@ Scenario('test forms', (I) =>{
     I.click('Подтвердить');
 });
 
-
-
 // ОТЧЕТЫ ПО УЧЕТУ ЭНЕРГОРЕСУРСОВ, кнопка удалить выбранное
 Scenario('test delete selected', (I) => {
-	I.amOnPage('/users/user/login');
+    I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
     I.click('.btn');
-    I.seeElement('')
-})
+    I.amOnPage('/sedmax/web/ui/reports/unfold/index');
+    I.seeElement("//div[@class='actions']/div/a");
+    I.click("//button[@class='btn red-corp']");
+    I.seeElement("//div[@class='modal-dialog ']/div");
+});
+

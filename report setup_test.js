@@ -27,23 +27,7 @@ Scenario('test tuning report name', (I) => {
     I.fillField("//div[@class='form-body']/div[@class='row']/div[@class='col-md-2']/div[@class='form-group']/input[@class='form-control']", "test");
 });
 
-// тестовое оборудование. Выборка по оборудованию
-Scenario('test tuning report name', (I) => {
-    I.amOnPage('/users/user/login');
-    I.fillField('#LoginForm_account', 'test');
-    I.fillField('#LoginForm_password', 'test');
-    I.click('.btn');
-    // I.seeElement('.sedmax-page-wrap');
-    I.amOnPage('/sedmax/web/ui/reports/unfold/index');
-    I.seeElement("//div[@class='actions']/div/a");
-    I.click("//div[@class='actions']/div/a");
-    I.seeElement("//div[@class='form-body']/div[@class='row']/div[@class='col-md-2']/div[@class='form-group']/input[@class='form-control']");
-    I.fillField("//div[@class='form-body']/div[@class='row']/div[@class='col-md-2']/div[@class='form-group']/input[@class='form-control']", "test");
-    I.click("//li[@id='obj-12']/i[1]");
-    I.click("//li[@id='dev-1006']/i[1]");
-});
-
-// тестовое оборудование
+// Тестовое оборудование
 Scenario('test equipment', (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
@@ -53,15 +37,27 @@ Scenario('test equipment', (I) => {
     I.amOnPage('/sedmax/web/ui/reports/unfold/index');
     I.seeElement("//div[@class='actions']/div/a");
     I.click("//div[@class='actions']/div/a");
-
-    I.seeElement("//a[@id=['obj-12_anchor']/");
-    I.click("//a[]");
+    I.seeElement("//li[@id='obj-12']/i[1]");
     I.click("//li[@id='obj-12']/i[1]");
     I.click("//li[@id='dev-1006']/i[1]");
+    I.seeElement("//li[@id='ti-20303']/a[@id='ti-20303_anchor']/i[1]");
+});
+//-------------------------------------------- Доступные каналы-------------------------------------------------------------
+//Доступные каналы. Выбрать все каналы
+Scenario('test available channels', (I) => {
+   I.amOnPage('/users/user/login');
+   I.fillField('#LoginForm_account', 'test');
+   I.fillField('#LoginForm_password', 'test');
+   I.click('.btn');
+   I.seeElement('.sedmax-page-wrap');
+   I.amOnPage('/sedmax/web/ui/reports/unfold/index');
+   I.click("//div[@class='actions']/div/a");
+   I.click("//div[@class='col-md-4']");
+   I.seeElement("//div[@class='btn blue mr5']");
 });
 
-// доступные каналы. Выбрать все каналы
-Scenario('test available channels', (I) => {
+// Доступные каналы. Переместить выбранное
+Scenario('test move selected', (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -71,5 +67,103 @@ Scenario('test available channels', (I) => {
     I.seeElement("//div[@class='actions']/div/a");
     I.click("//div[@class='actions']/div/a");
     I.click("//div[@class='col-md-4']");
+    I.seeElement("//div[@class='btn green']");
+});
+
+const assert = require('assert');
+
+// Выборка всех каналов
+Feature('available channels');
+
+Scenario('Test sort device channel', async (I) => {
+    I.amOnPage('/users/user/login');
+    I.fillField('#LoginForm_account', 'test');
+    I.fillField('#LoginForm_password', 'test');
+    I.click('.btn');
+    I.seeElement('.sedmax-page-wrap');
+    I.amOnPage('/sedmax/web/ui/reports/unfold/index');
+    I.seeElement("//div[@class='actions']/div/a");
+    I.click("//div[@class='actions']/div/a");
+    I.click("//li[@id='obj-12']/a[@id='obj-12_anchor']/i[1]");
+    I.seeElement("//div[@class='react-bs-container-body']/table/tbody/tr[1]");
+
+    const first_value_in_table = await I.grabTextFrom("//div[@class='react-bs-container-body']/table/tbody/tr[1]");
+    console.log(first_value_in_table);
+
+
+    I.click("//div[@class='react-bs-table-container']" +
+        "/div[@class='react-bs-table react-bs-table-bordered']" +
+        "/div[@class='react-bs-container-header table-header-wrapper']" +
+        "/table[@class='table table-hover table-bordered table-condensed']" +
+        "/thead" +
+        "/tr" +
+        "/th[2]"
+    );
+
+    const first_value_in_table_sorted = await I.grabTextFrom("//div[@class='react-bs-container-body']/table/tbody/tr[1]");
+    console.log(first_value_in_table_sorted);
+
+    assert.notEqual(first_value_in_table_sorted, 'СПТ_01\tДавление (Архив)');
+});
+
+Scenario('Test sort device channel', async (I) => {
+    I.amOnPage('/users/user/login');
+    I.fillField('#LoginForm_account', 'test');
+    I.fillField('#LoginForm_password', 'test');
+    I.click('.btn');
+    I.seeElement('.sedmax-page-wrap');
+    I.amOnPage('/sedmax/web/ui/reports/unfold/index');
+    I.seeElement("//div[@class='actions']/div/a");
+    I.click("//div[@class='actions']/div/a");
+    
+    I.click("//li[@id='obj-12']/a[@id='obj-12_anchor']/i[1]");
+    I.seeElement("//div[@class='react-bs-container-body']/table/tbody/tr[1]");
+
+    const first_value_in_table = await I.grabTextFrom("//div[@class='react-bs-container-body']/table/tbody/tr[1]");
+    console.log(first_value_in_table);
+
+
+    I.click("//div[@class='react-bs-table-container']" +
+        "/div[@class='react-bs-table react-bs-table-bordered']" +
+        "/div[@class='react-bs-container-header table-header-wrapper']" +
+        "/table[@class='table table-hover table-bordered table-condensed']" +
+        "/thead" +
+        "/tr" +
+        "/th[2]"
+    );
+
+    const first_value_in_table_sorted = await I.grabTextFrom("//div[@class='react-bs-container-body']/table/tbody/tr[2]");
+    console.log(first_value_in_table_sorted);
+
+    assert.notEqual(first_value_in_table_sorted, 'СПТ_01\tТнр (Архив)');
+});
+
+//-------------------------------------------Выбранные каналы----------------------------------------------------------------------
+
+// Выбрать все каналы
+Scenario('test available channels', (I) => {
+    I.amOnPage('/users/user/login');
+    I.fillField('#LoginForm_account', 'test');
+    I.fillField('#LoginForm_password', 'test');
+    I.click('.btn');
+    I.seeElement('.sedmax-page-wrap');
+    I.amOnPage('/sedmax/web/ui/reports/unfold/index');
+    I.seeElement("//div[@class='actions']/div/a");
+    I.click("//div[@class='actions']/div/a");
+    I.click("//div[@class='col-md-6']");
     I.seeElement("//div[@class='btn blue mr5']");
+});
+
+// Удалить выбранные
+Scenario('test delete channels', (I) => {
+    I.amOnPage('/users/user/login');
+    I.fillField('#LoginForm_account', 'test');
+    I.fillField('#LoginForm_password', 'test');
+    I.click('.btn');
+    I.seeElement('.sedmax-page-wrap');
+    I.amOnPage('/sedmax/web/ui/reports/unfold/index');
+    I.seeElement("//div[@class='actions']/div/a");
+    I.click("//div[@class='actions']/div/a");
+    I.click("//div[@class='col-md-6']");
+    I.seeElement("//div[@class='btn red']");
 });
