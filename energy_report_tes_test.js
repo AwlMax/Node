@@ -1,9 +1,21 @@
 // - Проверка страницы "ОТЧЕТЫ ПО УЧЕТУ ЭНЕРГОРЕСУРСОВ"
 Feature('Energy report_test');
 
+//- Авторизация в системе ('#LoginForm_account': 'test', '#LoginForm_password': 'test')
+
+//- Проверка страницы "ОТЧЕТЫ ПО УЧЕТУ ЭНЕРГОРЕСУРСОВ"
+
+//-> Проверка наличия элементов
+
+//-> Проверка поведения элементов
+
+//-> проверка переходов по кнопкам или появления всплывающих окон
+
 // -> Проверка наличия элементов
 
-Scenario('Check exists of link in report list', (I) => {
+Feature('Проверка наличия элементов');
+
+Scenario('Проверить наличие ссылки в списке отчетов', (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -13,7 +25,7 @@ Scenario('Check exists of link in report list', (I) => {
     I.seeElement('//table/tbody/tr[1]/td[3]/div/a');
 });
 
-Scenario('Check exists of group in group selector', (I) => {
+Scenario('Проверка наличия элементов в группе', (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -29,7 +41,10 @@ Scenario('Check exists of group in group selector', (I) => {
 //-> проверка переходов по кнопкам или появления всплывающих окон
 
 // проверка отчетов для теста
-Scenario('Test reports', (I) => {
+
+Feature('Проверка поведения элементов');
+
+Scenario('Проверка кнопки отмена', (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -41,8 +56,10 @@ Scenario('Test reports', (I) => {
     I.click('Отмена');
 });
 
-// наименование отчетов для теста
-Scenario('test something', (I) => {
+// Наименование отчетов для теста
+Feature('Наименование отчетов для теста');
+
+Scenario('Наименование отчетов', (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -53,7 +70,9 @@ Scenario('test something', (I) => {
 });
 
 // клики по отчетам для тестов
-Scenario('test forms', (I) =>{
+Feature('Клики по отчетам для тестов');
+
+Scenario('Тест формы', (I) =>{
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -64,7 +83,9 @@ Scenario('test forms', (I) =>{
 });
 
 // ОТЧЕТЫ ПО УЧЕТУ ЭНЕРГОРЕСУРСОВ, кнопка удалить выбранное
-Scenario('test delete selected', (I) => {
+Feature('Кнопка удалить выбранное');
+
+Scenario('Тест кнопки удалить', (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
