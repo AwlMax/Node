@@ -239,8 +239,6 @@ Scenario('"Порядок каналов" на страницу "Порядок 
     I.click('//div[@class="col-md-4"]/div/div/button[@class="btn green"]');
     I.seeElement("//div[@class='react-bs-table-container']/div[@class='react-bs-table react-bs-table-bordered']/div[@class='react-bs-container-body']/table[@class='table table-bordered table-hover table-condensed']/tbody/tr[2]");
     I.click("//div[@class='form-actions fluid']/div[@class='row']/div[@class='col-md-6']/div[@class='col-md-offset-3 col-md-9']/button[@class='btn blue']");
-    I.seeElement("//div[@class='actions']/div/a");
-    I.click("//div[@class='actions']/div/a");
     I.seeElement('//div[@class="form-body"]/div[class="row"]/div[class="portlet-title mt20 mb10"]/div[class="caption"]');
 
     I.seeInCurrentUrl('/sedmax/web/ui/reports/unfold/new');
