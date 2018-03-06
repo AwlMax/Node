@@ -22,7 +22,7 @@ Scenario('Проверить наличие ссылки в списке отч�
     I.click('.btn');
     I.seeElement('.sedmax-page-wrap');
     I.amOnPage('/sedmax/web/ui/reports/unfold/index');
-    I.seeElement('//table/tbody/tr[1]/td[3]/div/a');
+    I.seeElement('//table[@class="table table-striped table-bordered table-hover"]/tbody/tr[1]/td[3]/div/a');
 });
 
 Scenario('Проверка наличия элементов в группе', (I) => {
@@ -78,8 +78,8 @@ Scenario('Тест формы', (I) =>{
     I.fillField('#LoginForm_password', 'test');
     I.click('.btn');
     I.amOnPage('/sedmax/web/ui/reports/unfold/index');
-    I.fillField('.form-control', '2018');
-    I.click('Подтвердить');
+    I.fillField('//div[@class="modal-dialog"]/div[@class="modal-content"]/div[@class="modal-body"]', '2018');
+    I.click('//div[@class="modal-dialog"]/div[@class="modal-content"]/div[@class="modal-footer"]/div[@class="btn blue"]');
 });
 
 // ОТЧЕТЫ ПО УЧЕТУ ЭНЕРГОРЕСУРСОВ, кнопка удалить выбранное

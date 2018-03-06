@@ -50,7 +50,7 @@ Scenario('Тестовое оборудование', (I) => {
 
 Feature('При выборе устройства из дерева, происходит ли отображение данных в левой таблице');
 
-Scenario('test select full tree', (I) => {
+Scenario('Выбрать дерево', (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -65,7 +65,7 @@ Scenario('test select full tree', (I) => {
     I.seeElement("//div[@class='react-bs-container-body']/table/tbody/tr[2]");
 });
 
-Scenario('test select one device from tree tree', (I) => {
+Scenario('Выбрать из дерева одно устройство', (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -141,7 +141,7 @@ Scenario('Проверка выбора каналов по кнопке Выб�
 
 Feature('Проверка кнопки Переместить выбранные и появления в правой таблице');
 
-Scenario('"Переместить выбранные" и появления в правой таблице', async (I) => {
+Scenario('Переместить выбранные и появления в правой таблице', async (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -154,8 +154,7 @@ Scenario('"Переместить выбранные" и появления в �
     I.fillField("//div[@class='form-body']/div[@class='row']/div[@class='col-md-2']/div[@class='form-group']/input[@class='form-control']", "test");
     I.click("//li[@id='obj-12']/a[@id='obj-12_anchor']/i[1]");
     I.seeElement("//div[@class='react-bs-container-body']/table/tbody/tr[2]");
-
-      I.click('//div[@class="col-md-4"]/div/div/button[@class="btn blue mr5"]');
+    I.click('//div[@class="col-md-4"]/div/div/button[@class="btn blue mr5"]');
 
     const attr = await I.grabAttributeFrom('//div[@class="react-bs-container-body"]/table/tbody/tr[2]', 'style');
     assert.equal(attr, 'background-color: rgb(245, 245, 245);');
@@ -167,7 +166,7 @@ Scenario('"Переместить выбранные" и появления в �
 
 Feature('Проверка перехода по кнопке Порядок каналов на страницу Порядок каналов');
 
-Scenario('"Порядок каналов" на страницу "Порядок каналов"', async (I) => {
+Scenario('Порядок каналов на страницу Порядок каналов', async (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -197,9 +196,9 @@ Scenario('"Порядок каналов" на страницу "Порядок 
     assert.equal(divText, 'ПОРЯДОК КАНАЛОВ');
 });
 
-Feature('Проверка действия кнопки "Удалить выбранное", в том числе, когда отчеты не выбраны');
+Feature('Проверка действия кнопки Удалить выбранное, в том числе, когда отчеты не выбраны');
 
-Scenario('Проверка выбора каналов по кнопке Выбрать все каналы и появления их в таблице', async (I) => {
+Scenario('Проверка кнопки Удалить выбранное', async (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -216,9 +215,9 @@ Scenario('Проверка выбора каналов по кнопке Выб�
     I.seeElement("//div[@class='react-bs-table-container']/div[@class='react-bs-table react-bs-table-bordered']/div[@class='react-bs-container-body']/table[@class='table table-bordered table-hover table-condensed']/tbody/tr[2]");
 });
 
-Feature('Проверка страницы "Порядка каналов" (при нажатии кнопки "Порядок каналов" на странице');
+Feature('Проверка страницы Порядка каналов (при нажатии кнопки Порядок каналов на странице ): Проверка наличия элементов');
 
-Scenario('"Порядок каналов" на страницу "Порядок каналов"', async (I) => {
+Scenario('Проверка наличия элементов', async (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -232,20 +231,30 @@ Scenario('"Порядок каналов" на страницу "Порядок 
     I.click("//li[@id='obj-12']/a[@id='obj-12_anchor']/i[1]");
     I.seeElement("//div[@class='react-bs-container-body']/table/tbody/tr[2]");
     I.click('//div[@class="col-md-4"]/div/div/button[@class="btn blue mr5"]');
-
     const attr = await I.grabAttributeFrom('//div[@class="react-bs-container-body"]/table/tbody/tr[2]', 'style');
     assert.equal(attr, 'background-color: rgb(245, 245, 245);');
 
     I.click('//div[@class="col-md-4"]/div/div/button[@class="btn green"]');
     I.seeElement("//div[@class='react-bs-table-container']/div[@class='react-bs-table react-bs-table-bordered']/div[@class='react-bs-container-body']/table[@class='table table-bordered table-hover table-condensed']/tbody/tr[2]");
-    I.click("//div[@class='form-actions fluid']/div[@class='row']/div[@class='col-md-6']/div[@class='col-md-offset-3 col-md-9']/button[@class='btn blue']");
-    I.seeElement('//div[@class="form-body"]/div[class="row"]/div[class="portlet-title mt20 mb10"]/div[class="caption"]');
+    I.click('//div[@class="form-actions fluid"]/div[@class="row"]/div[@class="col-md-6"]/div[@class="col-md-offset-3 col-md-9"]/button[@class="btn blue"]');
 
     I.seeInCurrentUrl('/sedmax/web/ui/reports/unfold/new');
 
     const divText = await I.grabTextFrom("//div[@class='portlet-title mt20 mb10']/div[@class='caption']");
     assert.equal(divText, 'ПОРЯДОК КАНАЛОВ');
+
+    I.seeElement('//div[@class="form-body"]/div/div/button[@class="btn blue mr5"]');
+
 });
+
+
+
+
+
+
+
+//const assert = require('assert');
+
 
 
 
