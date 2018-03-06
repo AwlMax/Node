@@ -28,12 +28,11 @@ Scenario('test tuning report name', (I) => {
     I.fillField("//div[@class='form-body']/div[@class='row']/div[@class='col-md-2']/div[@class='form-group']/input[@class='form-control']", "test");
 });
 
-//TODO: Дополнить парочкой элементов
-
 Feature('Проверка наличия элементов: Дерево устрройств');
 
 // Тестовое оборудование
 Scenario('Тестовое оборудование', (I) => {
+
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
     I.fillField('#LoginForm_password', 'test');
@@ -42,6 +41,8 @@ Scenario('Тестовое оборудование', (I) => {
     I.amOnPage('/sedmax/web/ui/reports/unfold/index');
     I.seeElement("//div[@class='actions']/div/a");
     I.click("//div[@class='actions']/div/a");
+    I.seeElement("//div[@class='form-body']/div[@class='row']/div[@class='col-md-2']/div[@class='form-group']/input[@class='form-control']");
+    I.fillField("//div[@class='form-body']/div[@class='row']/div[@class='col-md-2']/div[@class='form-group']/input[@class='form-control']", "test");
     I.seeElement("//li[@id='obj-12']/i[1]");
     I.click("//li[@id='obj-12']/i[1]");
     I.click("//li[@id='dev-1006']/i[1]");
@@ -84,8 +85,6 @@ Scenario('Выбрать из дерева одно устройство', (I) =
 
 Feature('Проверка действия кнопок сортировки в таблицах');
 
-//TODO: Дополнить парочкой столбцов
-
 Scenario('Проверка действия кнопок сортировки в таблицах', async (I) => {
     I.amOnPage('/users/user/login');
     I.fillField('#LoginForm_account', 'test');
@@ -95,12 +94,13 @@ Scenario('Проверка действия кнопок сортировки в
     I.amOnPage('/sedmax/web/ui/reports/unfold/index');
     I.seeElement("//div[@class='actions']/div/a");
     I.click("//div[@class='actions']/div/a");
+    I.seeElement("//div[@class='form-body']/div[@class='row']/div[@class='col-md-2']/div[@class='form-group']/input[@class='form-control']");
+    I.fillField("//div[@class='form-body']/div[@class='row']/div[@class='col-md-2']/div[@class='form-group']/input[@class='form-control']", "test");
     I.click("//li[@id='obj-12']/a[@id='obj-12_anchor']/i[1]");
     I.seeElement("//div[@class='react-bs-container-body']/table/tbody/tr[1]");
 
     const first_value_in_table = await I.grabTextFrom("//div[@class='react-bs-container-body']/table/tbody/tr[1]");
     console.log(first_value_in_table);
-
 
     I.click("//div[@class='react-bs-table-container']" +
         "/div[@class='react-bs-table react-bs-table-bordered']" +

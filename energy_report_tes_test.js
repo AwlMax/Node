@@ -78,8 +78,10 @@ Scenario('Тест формы', (I) =>{
     I.fillField('#LoginForm_password', 'test');
     I.click('.btn');
     I.amOnPage('/sedmax/web/ui/reports/unfold/index');
+    I.seeElement('//table[@class="table table-striped table-bordered table-hover"]/tbody/tr[1]/td[3]/div/a');
+    I.click('//table[@class="table table-striped table-bordered table-hover"]/tbody/tr[1]/td[3]/div/a');
     I.fillField('//div[@class="modal-dialog"]/div[@class="modal-content"]/div[@class="modal-body"]', '2018');
-    I.click('//div[@class="modal-dialog"]/div[@class="modal-content"]/div[@class="modal-footer"]/div[@class="btn blue"]');
+    I.seeElement('//div[@class="modal-dialog "]/div[@class="modal-content"]/div[@class="modal-footer"]/button[@class="btn blue"]');
 });
 
 // ОТЧЕТЫ ПО УЧЕТУ ЭНЕРГОРЕСУРСОВ, кнопка удалить выбранное
